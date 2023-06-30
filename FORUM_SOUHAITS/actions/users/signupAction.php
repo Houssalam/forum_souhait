@@ -20,6 +20,12 @@ if(isset($_POST['validate'])){
 
         if($checkIfUserAlreadyExists->rowCount() == 0){
 
+            // Récupérer le rôle de l'utilisateur
+            $getRoleOfUser = $bdd->prepare('SELECT role FROM user WHERE mail = ?');
+            $getRoleOfUser->execute(array($user_email));
+            $user_role = $getRoleOfUser->fetchColumn();
+            
+
             // Insérer l'utilisateur dans la base de données
             $insertUserOnWebsite = $bdd->prepare('INSERT INTO user(nom, mail, mdp, isActive, role, avatar) VALUES(?, ?, ?, ?, ?, ?)');
             $isActive = 1; // Valeur de isActive (1 pour actif, 0 pour inactif)
@@ -36,9 +42,8 @@ if(isset($_POST['validate'])){
             $insertUserOnWebsite->execute(array($user_lastname, $user_email, $user_password, $isActive, $role, $user_avatar));
 
             // Récupérer les informations de l'utilisateur
-            $getInfosOfThisUserReq = $bdd->prepare('SELECT iduser, nom, mail, avatar FROM user WHERE mail = ?');
+            $getInfosOfThisUserReq = $bdd->prepare('SELECT iduser, nom, mail, avatar, role FROM user WHERE mail = ?');
             $getInfosOfThisUserReq->execute(array($user_email));
-
             $usersInfos = $getInfosOfThisUserReq->fetch();
 
             // Authentifier l'utilisateur sur le site et récupérer ses données dans des variables de session globales
@@ -47,6 +52,8 @@ if(isset($_POST['validate'])){
             $_SESSION['lastname'] = $usersInfos['nom'];
             $_SESSION['email'] = $usersInfos['mail'];
             $_SESSION['avatar_link'] = $usersInfos['avatar'];
+            $_SESSION['role'] = $usersInfos['role'];
+
 
             // Rediriger l'utilisateur vers la page d'accueil
             header('Location: login.php');
@@ -59,6 +66,3 @@ if(isset($_POST['validate'])){
         $errorMsg = "Veuillez compléter tous les champs...";
     }
 }
-
-
-?>

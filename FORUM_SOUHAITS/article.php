@@ -25,7 +25,7 @@ require('actions/wishs/showAllCommentsOfWishAction.php');
         if(isset($wish_publication_date)){
             ?>
             <section class="show-content">
-                  <h3><a href="prfoile.php?idliste_de_souhait=<?= $wish_lastname_author; ?>"><?= $wish_lastname_author; ?></a></h3>
+                  <h3><a href="prfoile.php?idliste_de_souhait=<?= $wish_lastname_author; ?>"></a></h3>
 
                   <hr>
                   <p><?= $wish_content; ?></p>

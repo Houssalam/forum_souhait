@@ -15,6 +15,9 @@
         <li class="nav-item">
           <a class="nav-link" href="my-wishs.php">Mes souhaits</a>
         </li>
+        <?php 
+        if(!isset($_SESSION['auth'])){
+        ?>
         <li class="nav-item">
           <a class="nav-link" href="signup.php">Inscription</a>
         </li>
@@ -22,15 +25,18 @@
           <a class="nav-link" href="login.php">Connexion</a>
         </li>
         <?php 
+        }
+        ?>
+        <?php 
           if(isset($_SESSION['auth'])){
-            ?>
-            <li class="nav-item">
-              <a class="nav-link" href="profile.php?iduser=<?= $_SESSION['iduser']; ?>">Mon profil</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="actions/users/logoutAction.php">Déconnexion</a>
-            </li>
-            <?php
+        ?>
+        <li class="nav-item">
+          <a class="nav-link" href="profile.php?iduser=<?= $_SESSION['iduser']; ?>">Mon profil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="actions/users/logoutAction.php">Déconnexion</a>
+        </li>
+        <?php
           }
         ?>
       </ul>

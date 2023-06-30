@@ -20,7 +20,8 @@ if(isset($_POST['validate'])){
             
             //Récupérer les données de l'utilisateur
             $usersInfos = $checkIfUserExists->fetch();
-
+            // Récupérer le rôle de l'utilisateur
+             $user_role = $usersInfos['role'];
             //Vérifier si le mot de passe est correct
             if(password_verify($user_password, $usersInfos['mdp'])){
             
@@ -30,6 +31,8 @@ if(isset($_POST['validate'])){
                 $_SESSION['lastname'] = $usersInfos['nom'];
                 $_SESSION['email'] = $usersInfos['mail'];
                 $_SESSION['avatar_link'] = $usersInfos['avatar'];
+                $_SESSION['role'] = $usersInfos['role'];
+
 
                 //Rediriger l'utilisateur vers la page d'accueil
                 header('Location: index.php');

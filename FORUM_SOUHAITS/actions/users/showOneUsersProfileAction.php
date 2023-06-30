@@ -21,6 +21,7 @@ if(isset($_GET['iduser']) AND ! empty($_GET['iduser'])) {
         $user_lastname = $usersInfos['nom'];
         $user_email = $usersInfos['mail'];
         $user_avatar = $usersInfos['avatar'];
+        
 
 // Récupérer toutes les  pubiliées par l'utilisateur
         $getHisWishs = $bdd->prepare('SELECT * FROM liste_de_souhait WHERE user_iduser =? ORDER BY idliste_de_souhait DESC');
