@@ -1,17 +1,16 @@
-<?php 
+<?php
 session_start();
 require('actions/wishs/showAllWishsAction.php');
 
+$isAdmin = false; // Initialisation de $isAdmin à false par défaut
+
 if(isset($_SESSION['auth'])){
-    
     if($_SESSION['role'] === "2"){
         $welcomeMsg = "Bienvenue administrateur " . $_SESSION['lastname'];
         $isAdmin = true;
     } else {
         $welcomeMsg = "Ravi de vous revoir utilisateur " . $_SESSION['lastname'];
-        $isAdmin = false;
     }
-
 }
 ?>
 
@@ -26,18 +25,7 @@ if(isset($_SESSION['auth'])){
 
           <h1><?php echo isset($welcomeMsg) ? $welcomeMsg : ''; ?></h1>
 
-    <form method="GET">
-        <div class="form-group row">
-            <div class="col-8">
-                <input type="search" name="search" class="form-control">
-            </div>
-            <div class="col-4">
-                <button class="btn btn-success" type="submit">Rechercher</button>
-            </div>
-        </div>
-    </form>
-    
-    <br>
+    <!-- Votre code HTML existant -->
 
     <?php 
         while($wish = $getAllWishs->fetch()){
@@ -52,9 +40,13 @@ if(isset($_SESSION['auth'])){
                          <br><br>
                          
                          <?php if($isAdmin): ?>
+                             <!-- Afficher les fonctionnalités spécifiques aux administrateurs -->
                              <a href="article.php?idliste_de_souhait=<?= $wish['idliste_de_souhait']; ?>" class="btn btn-primary">Accéder au souhait</a>
                              <a href="edit-wish.php?idliste_de_souhait=<?= $wish['idliste_de_souhait']; ?>" class="btn btn-warning">Modifier le souhait</a>
                              <a href="actions/wishs/deleteWishAction.php?idliste_de_souhait=<?= $wish['idliste_de_souhait']; ?>" class="btn btn-danger">Supprimer le souhait</a>
+                         <?php else: ?>
+                             <!-- Afficher les fonctionnalités spécifiques aux utilisateurs -->
+                             <a href="article.php?idliste_de_souhait=<?= $wish['idliste_de_souhait']; ?>" class="btn btn-primary">Accéder au souhait</a>
                          <?php endif; ?>
                     </div>
                     <div class="card-footer">

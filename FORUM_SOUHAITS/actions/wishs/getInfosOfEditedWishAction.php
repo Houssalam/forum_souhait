@@ -12,11 +12,11 @@ if(isset($_GET['idliste_de_souhait']) && !empty($_GET['idliste_de_souhait'])) {
     if($checkIfWishExists->rowCount() > 0) {
         // Récupérer les données du souhait
         $wishInfos = $checkIfWishExists->fetch();
-        if($wishInfos['user_iduser'] == $_SESSION['iduser']) {
+        if($wishInfos['user_iduser'] == $_SESSION['iduser'] || $_SESSION['role'] == 2) {
             $wish_description = $wishInfos['description'];
             $wish_description = str_replace('<br />', '', $wish_description);
         } else {
-            $errorMsg = "Vous n'êtes pas l'auteur de cette publication.";
+            $errorMsg = "Vous n'êtes pas autorisé à accéder à cette publication.";
         }
     } else {
         $errorMsg = "Aucun souhait n'a été trouvé.";

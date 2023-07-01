@@ -20,7 +20,7 @@ require('actions/wishs/editWishAction.php');
         ?>
 
         <?php  
-        if(isset($wish_description)){
+        if(isset($wish_description) && ($_SESSION['role'] == 2 || $wishInfos['user_iduser'] == $_SESSION['iduser'])){
         ?>
         <form method="POST">
 

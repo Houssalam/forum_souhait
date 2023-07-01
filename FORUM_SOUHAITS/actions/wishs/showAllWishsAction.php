@@ -4,7 +4,7 @@
 require('actions/database.php');
 
 // Récupérer les souhaits par défaut sans recherche
-$getAllWishs = $bdd->query('SELECT idliste_de_souhait, user_iduser, nom, description, date_publication FROM liste_de_souhait ORDER BY idliste_de_souhait DESC LIMIT 0,20');
+$getAllWishs = $bdd->query('SELECT idliste_de_souhait, user_iduser, nom, description, date_publication FROM liste_de_souhait ORDER BY idliste_de_souhait DESC LIMIT 0,1000');
 
 // Vérifier si une recherche a été trouvée par l'utilisateur
 if(isset($_GET['search']) && !empty($_GET['search'])) {

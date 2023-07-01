@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <h4>@<?= $user_lastname; ?></h4>
                         <hr>
-                        <p><?= $user_lastname . ' ' . $user_email; ?><br></p>
+                        <p><?= $user_lastname . ' <br> ' . $user_email; ?></p>
                     </div>
                 </div>
                 <br>

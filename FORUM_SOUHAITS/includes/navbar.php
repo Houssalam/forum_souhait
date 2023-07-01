@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-warning">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Blog</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,31 +15,29 @@
         <li class="nav-item">
           <a class="nav-link" href="my-wishs.php">Mes souhaits</a>
         </li>
-        <?php 
-        if(!isset($_SESSION['auth'])){
-        ?>
+        <?php if(isset($_SESSION['auth']) && isset($_SESSION['role']) && $_SESSION['role'] == 2): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="users.php">Users Gestion</a>
+        </li>
+        <?php endif; ?>
+        <?php if(!isset($_SESSION['auth'])): ?>
         <li class="nav-item">
           <a class="nav-link" href="signup.php">Inscription</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="login.php">Connexion</a>
         </li>
-        <?php 
-        }
-        ?>
-        <?php 
-          if(isset($_SESSION['auth'])){
-        ?>
+        <?php endif; ?>
+        <?php if(isset($_SESSION['auth'])): ?>
         <li class="nav-item">
           <a class="nav-link" href="profile.php?iduser=<?= $_SESSION['iduser']; ?>">Mon profil</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="actions/users/logoutAction.php">Déconnexion</a>
         </li>
-        <?php
-          }
-        ?>
+        <?php endif; ?>
       </ul>
     </div>
   </div>
 </nav>
+

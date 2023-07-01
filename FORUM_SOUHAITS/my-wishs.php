@@ -2,6 +2,17 @@
   require('actions/users/securityAction.php');
   require('actions/wishs/myWishsAction.php'); 
 
+// Vérifier si le message de succès est présent dans l'URL
+if (isset($_GET['success'])) {
+    $successMessage = $_GET['success'];
+    // Afficher le message de succès à l'utilisateur
+    echo '<script>alert("' . $successMessage . '");</script>';
+}
+// Le reste du code de la page my-wishs.php
+// ...
+
+
+
 ?>
 
 <!DOCTYPE html>
