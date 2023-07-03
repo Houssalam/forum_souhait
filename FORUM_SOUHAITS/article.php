@@ -30,7 +30,7 @@ require('actions/wishs/showAllCommentsOfWishAction.php');
                   <hr>
                   <p><?= $wish_content; ?></p>
                   <hr>
-                 <small><a href="profile.php?iduser=<?= $wish_id_author; ?>"><?= $wish_lastname_author; ?></a>&nbsp&nbsp<?= $wish_publication_date; ?></small>
+                 <small><a href="profile.php?iduser=<?= $wish_id_author; ?>"style="text-decoration: none;"><?= $wish_lastname_author; ?></a>&nbsp&nbsp<?= $wish_publication_date; ?></small>
 
             </section>
             <section class="show-answers">
@@ -52,7 +52,7 @@ require('actions/wishs/showAllCommentsOfWishAction.php');
                           ?>
                               <div class="card">
                                 <div class="card-header">
-                                  <a href="profile.php?iduser=<?= $comment['user_iduser']; ?>">
+                                  <a href="profile.php?iduser=<?= $comment['user_iduser']; ?>"style="text-decoration: none;">
                                  <?= $comment["user_iduser"]; ?> </a>
                                 </div>
                                 <div class="card-body">
