@@ -50,13 +50,47 @@ require('actions/users/showOneUsersProfileAction.php');
                      </div>
                      <div class="card-footer">
                          Par <?= $wish['nom']; ?> le <?= $wish['date_publication']; ?>
+                         <br>
+                         <a href="shareWish.php?idliste_de_souhait=<?= $wish['idliste_de_souhait']; ?>&iduser=<?= $_SESSION['iduser']; ?>" class="btn btn-primary">Partager</a>
+
                      </div>
                  </div>
                  <br>
                  <?php
              }
         }
+
+        // Récupérer les souhaits partagés par l'utilisateur
+        $getSharedWishs = $bdd->prepare('SELECT liste_de_souhait.idliste_de_souhait, liste_de_souhait.nom, liste_de_souhait.description, liste_de_souhait.date_publication, user.nom AS user_nom FROM liste_de_souhait
+            INNER JOIN partage_de_souhait ON liste_de_souhait.idliste_de_souhait = partage_de_souhait.liste_de_souhait_idliste_de_souhait
+            INNER JOIN user ON partage_de_souhait.utilisateur_destinataire_iduser = user.iduser
+            WHERE partage_de_souhait.utilisateur_partageur_iduser = ? ORDER BY liste_de_souhait.idliste_de_souhait DESC');
+        $getSharedWishs->execute([$idOfUser]);
         ?>
+        
+        <!-- Affichage des souhaits partagés -->
+        <div class="shared-wishes">
+            <h3>Souhaits partagés</h3>
+            <div class="row">
+                <?php while($sharedWish = $getSharedWishs->fetch()) { ?>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <?= $sharedWish['nom']; ?>
+                            </div>
+                            <div class="card-body">
+                                <?= $sharedWish['description']; ?>
+                            </div>
+                            <div class="card-footer">
+                                Partagé par <?= $sharedWish['user_nom']; ?> le <?= $sharedWish['date_publication']; ?>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+        
     </div>
 </body>
 
