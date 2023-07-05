@@ -31,7 +31,7 @@ require('actions/users/showOneUsersProfileAction.php');
                     <?php endif; ?>
                     <br><br>
 
-                   <a href="editProfile.php?iduser=<?= $_SESSION['iduser']; ?>" class="btn btn-primary">Modifier</a>
+                   <a href="editProfile.php?iduser=<?= $_SESSION['iduser']; ?>" class="btn btn-secondary">Modifier</a>
 
 
                 </div>

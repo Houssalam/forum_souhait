@@ -15,6 +15,9 @@
         <li class="nav-item">
           <a class="nav-link" href="my-wishs.php">Mes souhaits</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="sharedWishes.php">Souhaits partagés</a>
+        </li>
         <?php if(isset($_SESSION['auth']) && isset($_SESSION['role']) && $_SESSION['role'] == 2): ?>
         <li class="nav-item">
           <a class="nav-link" href="users.php">Users Gestion</a>

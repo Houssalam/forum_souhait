@@ -1,9 +1,11 @@
 Inscription / Connexion
-Publier une question
-Afficher les questions publiées par l'utilisateur
-Modifier une question
-Supprimer une question
-Rechercher et afficher les questions
-Afficher le contenu d'une question
-Répondre à une question
+Publier un souhait
+Afficher les souhaits publiées par l'utilisateur
+Modifier un souhait
+Supprimer un souhait
+Rechercher et afficher les souhaits
+Afficher le contenu d'un souhait
+Répondre à un souhait
 Afficher le profil d'un utilisateur (avec ses publications)
+création d'une page administrateur et d'une page utilisateur
+gestion de profile par l'utilisateur
