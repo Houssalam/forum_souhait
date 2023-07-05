@@ -1,22 +1,22 @@
 <?php
 session_start();
-require('actions/users/showOneUsersProfileAction.php');
+require('actions/users/showOneUsersProfileAction.php'); // Inclusion de l'action pour afficher le profil d'un utilisateur
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include('includes/head.php');?>
+<?php include('includes/head.php');?> <!-- Inclusion du fichier contenant les balises <head> -->
 
 <body>
-    <?php include('includes/navbar.php');?>
+    <?php include('includes/navbar.php');?> <!-- Inclusion du fichier contenant la barre de navigation -->
     <br><br>
 
     <div class="container">
         <?php 
         if(isset($errorMsg)){
-            echo $errorMsg;
+            echo $errorMsg; // Affichage du message d'erreur s'il existe
         } 
 
         if(isset($getHisWishs)) {
@@ -32,7 +32,7 @@ require('actions/users/showOneUsersProfileAction.php');
                     <br><br>
 
                    <a href="editProfile.php?iduser=<?= $_SESSION['iduser']; ?>" class="btn btn-secondary">Modifier</a>
-
+                   <!-- Lien pour accéder à la modification du profil de l'utilisateur en passant son ID dans l'URL -->
 
                 </div>
             </div>
@@ -40,6 +40,7 @@ require('actions/users/showOneUsersProfileAction.php');
             <?php
              
              while($wish = $getHisWishs->fetch()){
+                 // Boucle pour afficher tous les souhaits de l'utilisateur
                  ?>
                  <div class="card">
                      <div class="card-header">
@@ -52,7 +53,7 @@ require('actions/users/showOneUsersProfileAction.php');
                          Par <?= $wish['nom']; ?> le <?= $wish['date_publication']; ?>
                          <br>
                          <a href="shareWish.php?idliste_de_souhait=<?= $wish['idliste_de_souhait']; ?>&iduser=<?= $_SESSION['iduser']; ?>" class="btn btn-primary">Partager</a>
-
+                         <!-- Lien pour partager le souhait en passant l'ID du souhait et l'ID de l'utilisateur dans l'URL -->
                      </div>
                  </div>
                  <br>

@@ -20,8 +20,9 @@ if (isset($_GET['idliste_de_souhait']) && !empty($_GET['idliste_de_souhait'])) {
         // Vérifier si l'utilisateur est l'auteur du souhait ou un administrateur
         if ($wishInfos['user_iduser'] == $_SESSION['iduser'] || $_SESSION['role'] == 2) {
             // Supprimer les enregistrements associés dans la table liste_de_souhait_has_article
-            $deleteAssociatedRecords = $bdd->prepare('DELETE FROM liste_de_souhait_has_article WHERE liste_de_souhait_idliste_de_souhait = ?');
-            $deleteAssociatedRecords->execute([$idOfTheWish]);
+            $deleteAssociatedShares = $bdd->prepare('DELETE FROM partage_de_souhait WHERE liste_de_souhait_idliste_de_souhait = ?');
+            $deleteAssociatedShares->execute([$idOfTheWish]);
+
 
             // Supprimer le souhait
             $deleteThisWish = $bdd->prepare('DELETE FROM liste_de_souhait WHERE idliste_de_souhait = ?');
