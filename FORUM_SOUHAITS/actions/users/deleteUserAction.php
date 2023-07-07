@@ -10,7 +10,6 @@ require('../database.php');
 if (!isset($_SESSION['auth']) || $_SESSION['role'] != 2) {
     header("Location: ../../login.php");
     exit;
-    
 }
 
 if (isset($_GET['iduser']) && !empty($_GET['iduser'])) {
@@ -22,26 +21,37 @@ if (isset($_GET['iduser']) && !empty($_GET['iduser'])) {
     $userExists = $checkUser->rowCount() > 0;
 
     if ($userExists) {
-        // Supprimer les commentaires liés à l'utilisateur
-         $deleteComments = $bdd->prepare('DELETE FROM commentaire WHERE user_iduser = ?');
-         $deleteComments->execute([$userId]);
+        try {
+            // Désactiver les contraintes de clé étrangère pour permettre la suppression en cascade
+            $bdd->exec('SET FOREIGN_KEY_CHECKS = 0');
 
-          // Supprimer les enregistrements associés dans la table liste_de_souhait_has_article
-        $deleteAssociatedRecords = $bdd->prepare('DELETE FROM liste_de_souhait_has_article WHERE liste_de_souhait_idliste_de_souhait IN (SELECT idliste_de_souhait FROM liste_de_souhait WHERE user_iduser = ?)');
-        $deleteAssociatedRecords->execute([$userId]);
+            // Supprimer les commentaires liés à l'utilisateur
+            $deleteComments = $bdd->prepare('DELETE FROM commentaire WHERE user_iduser = ?');
+            $deleteComments->execute([$userId]);
 
-         // Supprimer les souhaits associés à l'utilisateur
-        $deleteWishes = $bdd->prepare('DELETE FROM liste_de_souhait WHERE user_iduser = ?');
-        $deleteWishes->execute([$userId]);
+            // Supprimer les enregistrements associés dans la table liste_de_souhait_has_article
+            $deleteAssociatedRecords = $bdd->prepare('DELETE FROM liste_de_souhait_has_article WHERE liste_de_souhait_idliste_de_souhait IN (SELECT idliste_de_souhait FROM liste_de_souhait WHERE user_iduser = ?)');
+            $deleteAssociatedRecords->execute([$userId]);
 
+            // Supprimer les souhaits associés à l'utilisateur
+            $deleteWishes = $bdd->prepare('DELETE FROM liste_de_souhait WHERE user_iduser = ?');
+            $deleteWishes->execute([$userId]);
 
-        // Supprimer l'utilisateur de la base de données
-        $deleteUser = $bdd->prepare('DELETE FROM user WHERE iduser = ?');
-        $deleteUser->execute([$userId]);
+            // Supprimer l'utilisateur de la base de données
+            $deleteUser = $bdd->prepare('DELETE FROM user WHERE iduser = ?');
+            $deleteUser->execute([$userId]);
 
-        // Rediriger vers la page des utilisateurs avec un message de confirmation
-        header("Location: ../../users.php?success=Utilisateur supprimé avec succès");
-        exit;
+            // Réactiver les contraintes de clé étrangère
+            $bdd->exec('SET FOREIGN_KEY_CHECKS = 1');
+
+            // Rediriger vers la page des utilisateurs avec un message de confirmation
+            header("Location: ../../users.php?success=Utilisateur supprimé avec succès");
+            exit;
+        } catch (PDOException $e) {
+            // Gérer les erreurs PDO ici
+            header("Location: ../../users.php?error=Une erreur s'est produite lors de la suppression de l'utilisateur");
+            exit;
+        }
     } else {
         // L'utilisateur n'existe pas, rediriger avec un message d'erreur
         header("Location: ../../users.php?error=L'utilisateur n'existe pas");
