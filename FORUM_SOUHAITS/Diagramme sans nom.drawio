@@ -1,9 +1,33 @@
-<mxfile host="app.diagrams.net" modified="2023-12-11T21:04:44.293Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0" version="22.1.7" etag="OwnyNPxMsUbxEeo76azt" type="github">
+<mxfile host="app.diagrams.net" modified="2023-12-11T21:21:12.913Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0" etag="8HuRzav1OiuG4tAfQxEA" version="22.1.7" type="github">
   <diagram name="Page-1" id="mr49xge1yvWLj0cuW4sF">
-    <mxGraphModel>
+    <mxGraphModel dx="1512" dy="923" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="GqL_yYA0WtvOV56aamZA-1" value="Questions" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="211" y="-102" width="141" height="151" as="geometry" />
+        </mxCell>
+        <mxCell id="GqL_yYA0WtvOV56aamZA-2" value="ShareQuestions" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;startSize=28;" vertex="1" parent="1">
+          <mxGeometry x="-159" y="101" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="GqL_yYA0WtvOV56aamZA-3" value="Answers" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="708" y="-96" width="139" height="157" as="geometry" />
+        </mxCell>
+        <mxCell id="GqL_yYA0WtvOV56aamZA-4" value="Likes" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="720" y="194" width="155" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="GqL_yYA0WtvOV56aamZA-5" value="Users" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="101" y="229" width="139" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="GqL_yYA0WtvOV56aamZA-6" value="Avoir" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="462" y="-64" width="128" height="107" as="geometry" />
+        </mxCell>
+        <mxCell id="GqL_yYA0WtvOV56aamZA-7" value="Obtenir" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="333" y="119" width="120" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="GqL_yYA0WtvOV56aamZA-9" value="Obtenir" style="swimlane;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="23" y="-62" width="120" height="82" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
